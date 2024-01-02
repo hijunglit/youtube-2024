@@ -4,10 +4,9 @@ include ../mixins/video
 block content
     h1 Welcome here you will see the trending videos 
     ul 
-        if videos 
-            each video in videos
-                li 
-                    +videos(video)
+        each video in videos
+            li 
+                +videos(video)
         else 
             p sorry nothing found.
     button send

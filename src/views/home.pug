@@ -1,5 +1,13 @@
-extends base.pug
+extends base
+include ../mixins/video
 
 block content
-    input(placeholder="what's your name??")
+    h1 Welcome here you will see the trending videos 
+    ul 
+        if videos 
+            each video in videos
+                li 
+                    +videos(video)
+        else 
+            p sorry nothing found.
     button send

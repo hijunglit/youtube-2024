@@ -27,7 +27,41 @@ export const postEdit = (req, res) => {
 export const getUpload = (req, res) => {
   res.render("upload", { pageTitle: "Upload video" });
 };
-export const postUpload = (req, res) => {
-  const { title } = req.body;
-  res.redirect("/");
+export const postUpload = async (req, res) => {
+  const { title, description, hashtags } = req.body;
+  // try {
+  //   const video = new Video({
+  //     title,
+  //     description,
+  //     createdAt: Date.now(),
+  //     hashtags: hashtags.split(",").map((hashtag) => `#${hashtag}`),
+  //     meta: {
+  //       views: 0,
+  //       rating: 0,
+  //     },
+  //   });
+  //   console.log(video);
+  //   await video.save();
+  // } catch {
+  //   console.log("error occur");
+  // }
+  try {
+    await Video.create({
+      title,
+      description,
+      createdAt: Date.now(),
+      hashtags: hashtags.split(",").map((hashtag) => `#${hashtag}`),
+      meta: {
+        views: 0,
+        rating: 0,
+      },
+    });
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    return res.render("upload", {
+      pageTitle: "Upload Video",
+      errorMessage: error._message,
+    });
+  }
 };

@@ -1,4 +1,5 @@
 import db from "./db";
+import "./models/Video";
 import express from "express";
 import morgan from "morgan";
 import globalRouter from "./routers/globalRouter";
@@ -12,7 +13,7 @@ const logger = morgan("tiny");
 app.use(logger);
 app.set("views", process.cwd() + "/src/views");
 app.set("view engine", "pug");
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 app.use("/", globalRouter);
 app.use("/video", videoRouter);
 app.use("/user", userRouter);

@@ -1,9 +1,7 @@
 mixin videos(video)
     div 
-        p 
-            a(href=`/video/${video.id}`) #{video.title}
-        p #{video.description}
-        p #{video.createdAt}
-        p #{video.hashtags}
-        p #{video.meta.views}
-        p #{video.meta.rating}  
+        h4 
+            a(href=`/video/${video.id}`)=video.title
+        p=video.description
+        small=video.createdAt
+        hr 

@@ -49,12 +49,7 @@ export const postUpload = async (req, res) => {
     await Video.create({
       title,
       description,
-      createdAt: Date.now(),
       hashtags: hashtags.split(",").map((hashtag) => `#${hashtag}`),
-      meta: {
-        views: 0,
-        rating: 0,
-      },
     });
     res.redirect("/");
   } catch (error) {

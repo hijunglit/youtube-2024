@@ -2,5 +2,7 @@ extends base
 block content   
     h4 edit #{video.title}
     form(method="POST")
-        input(name="title" type="text" value = `${video.title}` required)
+        input(name="title" type="text" value=`${video.title}`)
+        input(name="description" type="text" value=`${video.description}` minlength=20)
+        input(name="hashtags" type="text" value=video.hashtags.join())
         input(type="submit" value="Save")

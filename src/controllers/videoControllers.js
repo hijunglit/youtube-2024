@@ -8,13 +8,21 @@ export const home = async (req, res) => {
     return res.render("server-error");
   }
 };
-export const watch = (req, res) => {
+export const watch = async (req, res) => {
   const { id } = req.params;
-  res.render("watch", { pageTitle: `watching` });
+  const video = await Video.findById(id);
+  if(!video) {
+    res.render("404", {pageTitle: "Video not found."});
+  }
+  res.render("watch", { pageTitle: video.title, video });
 };
-export const getEdit = (req, res) => {
+export const getEdit = async (req, res) => {
   const { id } = req.params;
-  res.render("edit", { pageTitle: `editing` });
+  const video = await Video.findById(id);
+  if(!video) {
+    res.render("404", {pageTitle: "Video not found"});
+  }
+  res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
 export const postEdit = (req, res) => {
   const { id } = req.params;

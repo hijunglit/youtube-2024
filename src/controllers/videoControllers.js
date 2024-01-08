@@ -5,7 +5,7 @@ export const home = async (req, res) => {
     const videos = await Video.find({});
     return res.render("home", { pageTitle: "Home", videos });
   } catch {
-    return res.send("server-error");
+    return res.render("server-error");
   }
 };
 export const watch = async (req, res) => {

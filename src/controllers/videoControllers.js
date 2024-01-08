@@ -5,22 +5,22 @@ export const home = async (req, res) => {
     const videos = await Video.find({});
     return res.render("home", { pageTitle: "Home", videos });
   } catch {
-    return res.render("server-error");
+    return res.send("server-error");
   }
 };
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
-  if(!video) {
-    res.render("404", {pageTitle: "Video not found."});
+  if (!video) {
+    res.render("404", { pageTitle: "Video not found." });
   }
   res.render("watch", { pageTitle: video.title, video });
 };
 export const getEdit = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id);
-  if(!video) {
-    res.render("404", {pageTitle: "Video not found"});
+  if (!video) {
+    res.render("404", { pageTitle: "Video not found" });
   }
   res.render("edit", { pageTitle: `Editing ${video.title}`, video });
 };
@@ -28,8 +28,8 @@ export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
   const video = await Video.findById(id);
-  if(!video) {
-    return res.render("404", {pageTitle: "Video not found."});
+  if (!video) {
+    return res.render("404", { pageTitle: "Video not found." });
   }
   video.title = title;
   video.description = description;

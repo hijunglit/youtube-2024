@@ -1,4 +1,8 @@
-export const join = (req, res) => res.send("home page videos");
+export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const postJoin = (req, res) => {
+  console.log(req.body);
+  res.end();
+};
 export const edit = (req, res) => res.send("edit");
 export const remove = (req, res) => res.send("remote user");
 export const login = (req, res) => res.send("Login");

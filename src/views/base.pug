@@ -16,6 +16,8 @@ html(lang="en")
                         a(href="/search") Search video 
                     if loggedIn
                         li 
+                            a(href="/profile") #{loggedInUser.username}의 Profile
+                        li 
                             a(href="/login") Logout 
                     else
                         li 

@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
@@ -16,15 +17,11 @@ app.set('trust proxy', 1);
 app.use(
     session({
         secret: 'keyboard cat',
-        resave: true,
-        saveUninitialized: true,
+        store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/youtube' }),
+        resave: false,
+        saveUninitialized: false,
     })
 );
-app.use((req, res, next) => {
-    req.sessionStore.all((error, sessions) => {
-        next();
-    })
-});
 app.use(localMiddleware);
 app.use("/", rootRouter);
 app.use("/video", videoRouter);

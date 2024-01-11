@@ -16,8 +16,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set('trust proxy', 1);
 app.use(
     session({
-        secret: 'keyboard cat',
-        store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/youtube' }),
+        secret: process.env.SECRET,
+        cookie: {
+            maxAge:20000,
+        },
+        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
         resave: false,
         saveUninitialized: false,
     })

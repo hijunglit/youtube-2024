@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.set('trust proxy', 1);
 app.use(
     session({
-        secret: process.env.SECRET,
+        secret: process.env.COOKIE_SECRET,
         cookie: {
             maxAge:20000,
         },

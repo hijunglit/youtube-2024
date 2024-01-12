@@ -85,20 +85,36 @@ export const finishGithubLogin = async (req, res) => {
         },
       }
     )).json();
-    console.log(requestToken);
     if("access_token" in requestToken) {
-      const gitUser = await(
-        await fetch("https://api.github.com/user", {
+      const { access_token } = requestToken;
+      const apiUrl = "https://api.github.com";
+      const userData = await(
+        await fetch(`${apiUrl}/user`, {
           headers: {
-            'Authorization': `Bearer ${requestToken.access_token}`,
-          }
-        })).json();
-        console.log(gitUser);
+            Authorization: `token ${access_token}`,
+          },
+        })
+      ).json();
+      const emailData = await(
+        await fetch(`${apiUrl}/user/emails`, {
+          headers: {
+            Authorization: `token ${access_token}`,
+          },
+        })
+      ).json();
+      console.log(emailData);
+      const email = emailData.find((data) => 
+        data.primary === true && data.verified === true
+        );
+      if(!email) {
         return res.redirect("/login");
+      } else {
+        return console.log(`Here's verified & primary email :`, email);
+      }
     } else {
       return res.redirect("/login");
     }
-};
+  }
 export const edit = (req, res) => res.send("edit");
 export const remove = (req, res) => res.send("remote user");
 export const logout = (req, res) => res.send("Log out");

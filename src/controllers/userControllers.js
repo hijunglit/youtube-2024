@@ -27,6 +27,8 @@ export const postJoin = async (req, res) => {
       password,
       location,
     });
+    req.session.loggedIn = true;
+    req.session.user = username;
     return res.redirect("/login");
   } catch (error) {
     return res.status(400).render("join", {
@@ -39,7 +41,7 @@ export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Login" });
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
-  const user = await User.findOne({ username });
+  const user = await User.findOne({ username, socialOnly: false });
   const pageTitle = "Login";
   if (!user) {
     return res.status(400).render("login", {
@@ -55,7 +57,7 @@ export const postLogin = async (req, res) => {
     });
   }
   req.session.loggedIn = true;
-  req.session.user = user;
+  req.session.user = user.username;
   return res.redirect("/");
 };
 export const startGithubLogin = (req, res) => {
@@ -111,29 +113,28 @@ export const finishGithubLogin = async (req, res) => {
     if (!emailObj) {
       return res.redirect("/login");
     }
-    const existUser = await User.findOne({ email: emailObj.email });
-    console.log("exist user: ", existUser);
-    if (existUser) {
-      req.session.loggedIn = true;
-      req.session.user = existUser.email;
-      return res.redirect("/");
-    } else {
-      await User.create({
+    let user = await User.findOne({ email: emailObj.email });
+    if (!user) {
+      user = await User.create({
+        avatarUrl: userData.avatar_url,
         name: emailObj.email,
         email: emailObj.email,
         username: emailObj.email,
         socialOnly: true,
         password: "",
       });
-      req.session.loggedIn = true;
-      req.session.user = emailObj.email;
-      return res.redirect("/");
     }
+    console.log("user : ", user);
+    req.session.loggedIn = true;
+    req.session.user = user.email;
+    return res.redirect("/");
   } else {
     return res.redirect("/login");
   }
 };
 export const edit = (req, res) => res.send("edit");
-export const remove = (req, res) => res.send("remote user");
-export const logout = (req, res) => res.send("Log out");
+export const logout = (req, res) => {
+  req.session.destroy();
+  return res.redirect("/");
+};
 export const see = (req, res) => res.send("See User");

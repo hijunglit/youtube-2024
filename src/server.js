@@ -5,7 +5,7 @@ import MongoStore from "connect-mongo";
 import rootRouter from "./routers/rootRouter";
 import videoRouter from "./routers/videoRouter";
 import userRouter from "./routers/userRouter";
-import { localMiddleware } from './middleware';
+import { localMiddleware } from "./middleware";
 
 const app = express();
 const logger = morgan("tiny");
@@ -13,17 +13,14 @@ app.use(logger);
 app.set("views", process.cwd() + "/src/views");
 app.set("view engine", "pug");
 app.use(express.urlencoded({ extended: true }));
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 app.use(
-    session({
-        secret: process.env.COOKIE_SECRET,
-        cookie: {
-            maxAge:200000,
-        },
-        store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
-        resave: false,
-        saveUninitialized: false,
-    })
+  session({
+    secret: process.env.COOKIE_SECRET,
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
+    resave: false,
+    saveUninitialized: false,
+  })
 );
 app.use(localMiddleware);
 app.use("/", rootRouter);

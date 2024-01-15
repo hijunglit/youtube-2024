@@ -9,14 +9,14 @@ html(lang="en")
             nav 
                 ul 
                     li 
-                        a(href="/video/upload") Upload video
-                    li 
                         a(href="/") Home
                     li 
                         a(href="/search") Search video 
                     if loggedIn
                         li 
-                            a(href="/profile") #{loggedInUser}의 Profile
+                            a(href="/video/upload") Upload video
+                        li 
+                            a(href="/profile") #{loggedInUser.name}의 Profile
                         li 
                             a(href="/user/edit") Edit profile 
                         li 

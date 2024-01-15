@@ -2,7 +2,7 @@ import User from "../models/User";
 import fetch from "node-fetch";
 import bcrypt from "bcrypt";
 
-export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
+export const getJoin = (req, res) => res.render("users/join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
   const { name, email, username, password, password2, location } = req.body;
   const pageTitle = "Join";
@@ -38,7 +38,7 @@ export const postJoin = async (req, res) => {
   }
 };
 export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Login" });
+  res.render("users/login", { pageTitle: "Login" });
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const user = await User.findOne({ username });
@@ -138,7 +138,7 @@ export const logout = (req, res) => {
   return res.redirect("/");
 };
 export const getEdit = (req, res) => {
-  return res.render("edit-profile", { pageTitle: "edit profile" });
+  return res.render("users/edit-profile", { pageTitle: "edit profile" });
 };
 export const postEdit = async (req, res) => {
   const currentUser = req.session.user;
@@ -176,4 +176,13 @@ export const postEdit = async (req, res) => {
   req.session.user = updatedUser;
   return res.redirect("/user/edit");
 };
+export const getChangePassword = (req, res) => {
+  if(req.session.user.socialOnly === true) {
+    return res.redirect("/");
+  }
+  return res.render('users/change-password', { pageTitle: "Change password" });
+}
+export const postChangePassword = (req, res) => {
+  return res.redirect("/");
+}
 export const see = (req, res) => res.send("See User");

@@ -146,7 +146,9 @@ export const postEdit = async (req, res) => {
       user: { _id },
     },
     body: { name, email, username, location },
+    file,
   } = req;
+  console.log("the file is : ", file);
   if(email !== currentUser.email) {
     const exists = await User.exists({ email });
     if(exists) {
@@ -166,6 +168,7 @@ export const postEdit = async (req, res) => {
     }
   }
   const updatedUser = await User.findByIdAndUpdate(_id, {
+    avatarUrl: file ? file.path : avatarUrl,
     name,
     email,
     username,
@@ -210,4 +213,5 @@ export const postChangePassword = async (req, res) => {
   req.session.user.password = user.password;
   return res.redirect("/user/logout");
 }
+
 export const see = (req, res) => res.send("See User");

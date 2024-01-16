@@ -14,7 +14,7 @@ export const watch = async (req, res) => {
   if (!video) {
     res.status(404).render("404", { pageTitle: "Video not found." });
   }
-  res.render("watch", { pageTitle: video.title, video });
+  res.render("videos/watch", { pageTitle: video.title, video });
 };
 export const getEdit = async (req, res) => {
   const { id } = req.params;
@@ -22,7 +22,7 @@ export const getEdit = async (req, res) => {
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found" });
   }
-  return res.render("edit", { pageTitle: `Editing ${video.title}`, video });
+  return res.render("videos/edit", { pageTitle: `Editing ${video.title}`, video });
 };
 export const postEdit = async (req, res) => {
   const { id } = req.params;
@@ -39,12 +39,15 @@ export const postEdit = async (req, res) => {
   return res.redirect(`/video/${id}`);
 };
 export const getUpload = (req, res) => {
-  res.render("upload", { pageTitle: "Upload video" });
+  res.render("videos/upload", { pageTitle: "Upload video" });
 };
 export const postUpload = async (req, res) => {
   const { title, description, hashtags } = req.body;
+  const { path: fileUrl } = req.file;
+  console.log("multer req.file is => ", req.file);
   try {
     await Video.create({
+      fileUrl,
       title,
       description,
       hashtags: Video.formatHashtags(hashtags),
@@ -75,5 +78,5 @@ export const search = async (req, res) => {
       },
     });
   }
-  return res.render("search", { pageTitle: "Search", videos });
+  return res.render("videos/search", { pageTitle: "Search", videos });
 };

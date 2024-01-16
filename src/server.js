@@ -22,7 +22,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+
 app.use(localMiddleware);
+app.use("/uploads", express.static('uploads'));
 app.use("/", rootRouter);
 app.use("/video", videoRouter);
 app.use("/user", userRouter);

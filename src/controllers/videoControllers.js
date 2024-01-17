@@ -1,3 +1,4 @@
+import User from '../models/User';
 import Video from "../models/Video";
 
 export const home = async (req, res) => {
@@ -10,7 +11,8 @@ export const home = async (req, res) => {
 };
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id);
+  const video = await(await Video.findById(id).populate('owner'));
+  console.log("video info : ", video);
   if (!video) {
     res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -42,13 +44,16 @@ export const getUpload = (req, res) => {
   res.render("videos/upload", { pageTitle: "Upload video" });
 };
 export const postUpload = async (req, res) => {
+  const { 
+    user: { _id } ,
+  } = req.session;
   const { title, description, hashtags } = req.body;
   const { path: fileUrl } = req.file;
-  console.log("multer req.file is => ", req.file);
   try {
     await Video.create({
       fileUrl,
       title,
+      owner: _id,
       description,
       hashtags: Video.formatHashtags(hashtags),
     });

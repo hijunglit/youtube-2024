@@ -16,7 +16,7 @@ html(lang="en")
                         li 
                             a(href="/video/upload") Upload video
                         li 
-                            a(href="/profile") #{loggedInUser.name}의 Profile
+                            a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
                         li 
                             a(href="/user/edit") Edit profile 
                         li 

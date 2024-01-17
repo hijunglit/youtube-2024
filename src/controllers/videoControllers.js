@@ -78,6 +78,5 @@ export const search = async (req, res) => {
       },
     });
   }
-  console.log("we can search: ", videos);
   return res.render("videos/search", { pageTitle: `Search`, videos });
 };

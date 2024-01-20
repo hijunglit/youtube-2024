@@ -5,8 +5,8 @@ block content
         div.controls
             button#play Play 
             button#mute Mute 
+            input(type="range" step="0.1" value="0.5" min="0" max="1" id="volume")
             span#runTime 00:00/00:00 
-            input(type="range" id="volume" step="0.1" min="0" max="1")
         //-
             div
                 p=video.description

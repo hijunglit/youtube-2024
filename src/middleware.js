@@ -1,4 +1,4 @@
-import multer from 'multer';
+import multer from "multer";
 
 export const localMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -21,15 +21,15 @@ export const publicOnlyMiddleware = (req, res, next) => {
   }
 };
 
-export const uploadAvatar = multer({ 
-  dest: "uploads/avatar", 
+export const uploadAvatar = multer({
+  dest: "uploads/avatar",
   limits: {
     fileSize: 1000000,
-  } ,
+  },
 });
-export const uploadVideo = multer({ 
-  dest: "uploads/videos", 
+export const uploadVideo = multer({
+  dest: "uploads/videos",
   limits: {
-    fileSize: 3000000,
+    fileSize: 6000000,
   },
 });

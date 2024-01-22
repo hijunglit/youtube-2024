@@ -37,23 +37,22 @@ const handleVolumeChange = (event) => {
   volumeValue = value;
   media.volume = value;
 };
+
+const formatTime = (seconds) =>
+  new Date(seconds * 1000).toISOString().substring(11, 19);
+
 const handleLoadedMetadata = () => {
-  totalTime.innerText = Math.floor(video.duration);
-};
-const handleTimeUpdate = () => {
-  currenTime.innerText = Math.floor(video.currentTime);
+  totalTime.innerText = formatTime(Math.floor(media.duration));
 };
 
-// if (media.readyState >= 2) {
-//   console.log(media.readyState);
-//   totalTime.innerText = Math.floor(media.duration);
-// } else {
-//   media.addEventListener("loadedmetadata", handleLoadedMetadata);
-// }
 totalTime.innerText =
   media.readyState >= 2
-    ? Math.floor(media.duration)
+    ? formatTime(Math.floor(media.duration))
     : media.addEventListener("loadedmetadata", handleLoadedMetadata);
+
+const handleTimeUpdate = () => {
+  currenTime.innerText = formatTime(Math.floor(media.currentTime));
+};
 
 playBtn.addEventListener("click", handlePlayClick);
 muteBtn.addEventListener("click", handleMuteClick);

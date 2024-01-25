@@ -1,5 +1,4 @@
 import multer from "multer";
-import flash from "express-flash";
 
 export const localMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
@@ -11,7 +10,6 @@ export const protectorMiddleware = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
   } else {
-    console.log(req);
     req.flash("info", "not logged in");
     return res.redirect("/login");
   }

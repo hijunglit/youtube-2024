@@ -8,6 +8,11 @@ let recorder;
 let videoFile;
 
 const handleDownload = async () => {
+    const files = {
+        input: "recorder.webm",
+        output: "myrecorder.mp4",
+        thumbnail: "thumbnail.jpg",
+    }
     /******************************ffmpeg********************************/
     const ffmpeg = new FFmpeg();
     const message = null;

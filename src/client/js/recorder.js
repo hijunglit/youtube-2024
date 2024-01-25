@@ -8,7 +8,7 @@ let recorder;
 let videoFile;
 
 const handleDownload = async () => {
-    //////////////////////////////////////////// ffmpeg
+    /******************************ffmpeg********************************/
     const ffmpeg = new FFmpeg();
     const message = null;
 
@@ -25,18 +25,36 @@ const handleDownload = async () => {
 
     await ffmpeg.writeFile("recorder.webm", await fetchFile(videoFile));
     await ffmpeg.exec(["-i", "recorder.webm", "output.mp4"]);
-    const data = await ffmpeg.readFile("output.mp4");
-    console.log(data);
-    console.log(data.buffer);
+    await ffmpeg.exec(
+        ["-i", 
+        "recorder.webm",
+        "-ss",
+        "00:00:01",
+        "-frames:v",
+        "1",
+        "thumbnail.jpg"]
+    );
+    const videoData = await ffmpeg.readFile("output.mp4");
+    const thumbData = await ffmpeg.readFile("thumbnail.jpg");
+    console.log(videoData);
+    console.log(videoData.buffer);
+    console.log("thumb data => ", thumbData);
 
-    const dataUrl = URL.createObjectURL(new Blob([data.buffer], {type: "video/mp4"}));
-    //////////////////////////////////////////// ffmpeg
+    const videoUrl = URL.createObjectURL(new Blob([videoData.buffer], {type: "video/mp4"}));
+    const thumbUrl = URL.createObjectURL(new Blob([thumbData.buffer], {type: "image/jpg"}));
+    /******************************ffmpeg********************************/
 
     const a = document.createElement("a");
     document.body.appendChild(a);
-    a.href = dataUrl;
+    a.href = videoUrl;
     a.download = "myrecorder.mp4";
     a.click();
+
+    const thumbA = document.createElement("a");
+    document.body.appendChild(thumbA);
+    thumbA.href = thumbUrl;
+    thumbA.download = "thumbnail.jpg";
+    thumbA.click();
 }
 
 const handleStop = () => {

@@ -4,10 +4,12 @@ block content
         span=errorMessage
     div 
         video#preview
-        button#startBtn recorder!
+        button#actionBtn recorder!
     form(method="POST" enctype="multipart/form-data")
         label(for="video") Choose a video to upload 
         input(type="file" id="video" name="video" accept="video/*" required)
+        label(for="thumbnail") Choose a thumbnail to upload 
+        input(type="file" id="thumbnail" name="thumbnail" accept="image/*" required)
         input(name="title" type="text" placeholder="title" required)
         input(name="description" type="text" placeholder="description" required)
         input(name="hashtags" type="text" placeholder="hashtags" required)

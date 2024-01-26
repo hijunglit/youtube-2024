@@ -41,10 +41,12 @@ export const postEdit = async (req, res) => {
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
   const video = await Video.exists({ _id: id });
+  console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   if (String(video.owner) !== String(_id)) {
+    console.log("doesn't match owner and user.");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndUpdate(id, {
@@ -52,7 +54,8 @@ export const postEdit = async (req, res) => {
     description,
     hashtags: Video.formatHashtags(hashtags),
   });
-  return res.redirect(`/video/${id}`);
+  req.flash('info', 'change success');
+  return res.status(200).redirect(`/video/${id}`);
 };
 export const getUpload = (req, res) => {
   res.render("videos/upload", { pageTitle: "Upload video" });

@@ -10,7 +10,7 @@ export const protectorMiddleware = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
   } else {
-    req.flash("info", "not logged in");
+    req.flash("error", "not logged in");
     return res.redirect("/login");
   }
 };

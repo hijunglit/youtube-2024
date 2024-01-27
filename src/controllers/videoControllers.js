@@ -54,7 +54,7 @@ export const postEdit = async (req, res) => {
     description,
     hashtags: Video.formatHashtags(hashtags),
   });
-  req.flash('info', 'change success');
+  req.flash("info", "change success");
   return res.status(200).redirect(`/video/${id}`);
 };
 export const getUpload = (req, res) => {
@@ -65,10 +65,7 @@ export const postUpload = async (req, res) => {
     user: { _id },
   } = req.session;
   const { title, description, hashtags } = req.body;
-  const {
-    video, 
-    thumbnail,
-  } = req.files;
+  const { video, thumbnail } = req.files;
   console.log(video[0].path, thumbnail[0].path);
   try {
     const uploadVideo = await Video.create({
@@ -130,4 +127,10 @@ export const registerView = async (req, res) => {
   video.meta.views = video.meta.views + 1;
   await video.save();
   return res.sendStatus(200);
+};
+
+export const registerComment = async (req, res) => {
+  console.log(req.params);
+  console.log(req.body);
+  return res.end();
 };

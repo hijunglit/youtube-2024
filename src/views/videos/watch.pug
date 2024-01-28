@@ -26,11 +26,16 @@ block content
                     br
                     a(href=video.id + "/delete") delete video &rarr;
         if loggedIn
-            .video__comments 
+            .video__add_comments 
                 form.video__comment-form#commentForm
                     textarea(cols="30", rows="10" placeholder="Write a comment...")
                     button(type="submit") Add comment    
-
+        .video__comments 
+            ul
+                each comment in video.comments.reverse()
+                    li.video__comment 
+                        i.fas.fa-comment
+                        | #{comment.text}
 block scripts 
     script(src="/static/js/videoPlayer.js") 
     if loggedIn

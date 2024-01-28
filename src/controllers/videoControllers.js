@@ -12,7 +12,8 @@ export const home = async (req, res) => {
 };
 export const watch = async (req, res) => {
   const { id } = req.params;
-  const video = await Video.findById(id).populate("owner");
+  const video = await Video.findById(id).populate("owner").populate("comments");
+  console.log(video);
   if (!video) {
     res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -132,22 +133,22 @@ export const registerView = async (req, res) => {
 
 export const registerComment = async (req, res) => {
   const {
-    user: { _id },
-  } = req.session;
-  const {
+    session: { user },
     params: { id },
+    body: { text },
   } = req;
-  const { text } = req.body;
   const video = await Video.findById(id);
   if (!video) {
     console.log("Video not found");
     return sendStatus(404);
   }
 
-  await Comment.create({
+  const comment = await Comment.create({
     text,
-    owner: _id,
+    owner: user._id,
     video,
   });
+  video.comments.push(comment._id);
+  await video.save();
   return res.sendStatus(201);
 };

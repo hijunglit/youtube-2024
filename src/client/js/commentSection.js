@@ -1,7 +1,7 @@
 const videoContainer = document.getElementById("videoContainer");
 const form = document.querySelector("form");
 
-const handleAddComment = async (event) => {
+const handleSubmit = async (event) => {
   event.preventDefault();
   const textarea = form.querySelector("textarea");
   const text = textarea.value;
@@ -15,8 +15,9 @@ const handleAddComment = async (event) => {
       text,
     }),
   });
+  textarea.value = "";
 };
 
 if (form) {
-  form.addEventListener("submit", handleAddComment);
+  form.addEventListener("submit", handleSubmit);
 }

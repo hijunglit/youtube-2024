@@ -8,9 +8,12 @@ const handleAddComment = async (event) => {
   const videoId = videoContainer.dataset.id;
   await fetch(`/api/video/${videoId}/comment`, {
     method: "POST",
-    body: {
-      text,
+    headers: {
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      text,
+    }),
   });
 };
 

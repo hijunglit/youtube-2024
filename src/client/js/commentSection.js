@@ -6,11 +6,15 @@ const addComment = (text) => {
   const newComment = document.createElement("li");
   newComment.className = "video__comment";
   const icon = document.createElement("i");
-  icon.className = "fas fa__comment";
+  icon.className = "fas fa-comment";
   const span = document.createElement("span");
+  const span2 = document.createElement("span");
+  span2.className = "delete";
   span.innerText = text;
+  span2.innerText = "❌";
   newComment.appendChild(icon);
   newComment.appendChild(span);
+  newComment.appendChild(span2);
   videoComments.prepend(newComment);
 };
 const handleSubmit = async (event) => {
@@ -29,7 +33,9 @@ const handleSubmit = async (event) => {
   });
   if (response.status === 201) {
     console.log(response);
-    console.log("add fake comment! g");
+    console.log("add fake comment!");
+    const { newCommentId } = response.json();
+    console.log(newCommentId);
     addComment(text);
     textarea.value = "";
   }

@@ -13,7 +13,7 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner").populate("comments");
-  console.log(video);
+  console.log("video :",video);
   if (!video) {
     res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -150,5 +150,27 @@ export const registerComment = async (req, res) => {
   });
   video.comments.push(comment._id);
   await video.save();
-  return res.status(201).json({newCommentId : comment.owner._id});
+  return res.status(201).json({newCommentId : comment._id});
 };
+
+export const deleteComment = async (req, res) => {
+  const {
+    session: { user },
+    params: { id },
+  } =req;
+  console.log(id);
+  const comment = await Comment.findById(id);
+  console.log(comment);
+  if(!comment) {
+    console.log("comment not found.");
+    return res.sendStatus(404);
+  } 
+  if (String(comment.owner) !== String(user._id)) {
+    console.log("Not authorized");
+    return res.sendStatus(400);
+  }
+  console.log("you can delete this comment");
+  await comment.deleteOne({});
+  console.log("delete comment is success");
+  return res.sendStatus(200).json();
+}

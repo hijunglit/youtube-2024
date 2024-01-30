@@ -4,3 +4,11 @@ body {
     background: $red;
     color: $color;
 }
+.video__comment {
+    width: 100px;
+    display: flex;
+    justify-content: space-between;
+}
+.video__comment span:nth-child(3) {
+    cursor: pointer;
+}

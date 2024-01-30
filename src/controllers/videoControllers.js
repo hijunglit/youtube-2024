@@ -160,6 +160,8 @@ export const deleteComment = async (req, res) => {
   } =req;
   console.log(id);
   const comment = await Comment.findById(id);
+  const video = await Video.findOne({ comments: id });
+  console.log(video);
   console.log(comment);
   if(!comment) {
     console.log("comment not found.");

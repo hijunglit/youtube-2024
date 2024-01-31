@@ -42,7 +42,7 @@ export const postEdit = async (req, res) => {
   } = req.session;
   const { id } = req.params;
   const { title, description, hashtags } = req.body;
-  const video = await Video.exists({ _id: id });
+  const video = await Video.findById(id);
   console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
@@ -160,9 +160,10 @@ export const deleteComment = async (req, res) => {
     params: { id },
   } = req;
   const comment = await Comment.findById(id);
-  const video = await Video.find({ owner: user._id });
+  const video = await Video.findOne({ owner: user._id });
   console.log(comment);
   console.log(video);
+
   if (!comment) {
     console.log("comment not found.");
     return res.sendStatus(404);

@@ -18,6 +18,7 @@ const addComment = (text, id) => {
   newComment.appendChild(span);
   newComment.appendChild(span2);
   videoComments.prepend(newComment);
+  span2.addEventListener("click", handleDelete);
 };
 const handleSubmit = async (event) => {
   event.preventDefault();

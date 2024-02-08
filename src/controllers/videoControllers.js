@@ -70,9 +70,10 @@ export const postUpload = async (req, res) => {
   const { video, thumbnail } = req.files;
   console.log(video[0].location, thumbnail[0].location);
   try {
+    const isFly = process.env.NODE_ENV === "production";
     const uploadVideo = await Video.create({
-      fileUrl: video[0].location,
-      thumbUrl: thumbnail[0].location,
+      fileUrl: isFly ? video[0].location : video[0].path,
+      thumbUrl: isFly ? thumbnail[0].location : thumbnail[0].path,
       title,
       owner: _id,
       description,

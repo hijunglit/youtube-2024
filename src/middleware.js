@@ -9,9 +9,16 @@ const s3 = new aws.S3({
   },
 });
 
-const multerUploader = multerS3({
+const isFly = process.env.NODE_ENV === "production";
+
+const s3AvatarUploader = multerS3({
   s3: s3,
-  bucket: "youtube-2024",
+  bucket: "youtube-2024/image",
+  acl: "public-read",
+});
+const s3VideoUploader = multerS3({
+  s3: s3,
+  bucket: "youtube-2024/video",
   acl: "public-read",
 });
 
@@ -19,6 +26,7 @@ export const localMiddleware = (req, res, next) => {
   res.locals.loggedIn = Boolean(req.session.loggedIn);
   res.locals.siteName = "Youtube";
   res.locals.loggedInUser = req.session.user || {};
+  res.locals.isFly = isFly;
   next();
 };
 export const protectorMiddleware = (req, res, next) => {
@@ -42,12 +50,12 @@ export const uploadAvatar = multer({
   limits: {
     fileSize: 1000000,
   },
-  storage: multerUploader,
+  storage: isFly ? s3AvatarUploader : undefined,
 });
 export const uploadVideo = multer({
   dest: "uploads/videos",
   limits: {
     fileSize: 6000000,
   },
-  storage: multerUploader,
+  storage: isFly ? s3VideoUploader : undefined,
 });

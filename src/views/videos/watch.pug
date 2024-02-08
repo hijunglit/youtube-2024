@@ -1,7 +1,7 @@
 extends ../base
 block content
     div#videoContainer(data-id=video._id)
-        video(src=video.fileUrl controls id="video" width="100%")
+        video(src=isFly ? video.fileUrl : "/" + video.fileUrl controls id="video" width="100%")
         div#videoControls
             button#play Play 
             button#mute Mute 

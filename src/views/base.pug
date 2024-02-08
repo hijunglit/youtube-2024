@@ -1,39 +1,13 @@
 doctype html
 html(lang="en")
     include ../mixins/message
-    head
-        title #{pageTitle} | #{siteName}
-        link(rel="stylesheet" href="https://unpkg.com/mvp.css")
-        link(rel="stylesheet", href="/static/css/styles.css")
-        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css")
-        link(rel="shortcut icon", href="#")
+    include ../partials/head
     body 
         if messages.info 
             +message("info", messages.info)
         if messages.error 
             +message("error", messages.error)
-        header 
-            h1=pageTitle
-            nav 
-                ul 
-                    li 
-                        a(href="/") Home
-                    li 
-                        a(href="/search") Search video 
-                    if loggedIn
-                        li 
-                            a(href="/video/upload") Upload video
-                        li 
-                            a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
-                        li 
-                            a(href="/user/edit") Edit profile 
-                        li 
-                            a(href="/user/logout") Logout 
-                    else
-                        li 
-                            a(href="/join") Join
-                        li 
-                            a(href="/login") Login
+        include ../partials/header
         main 
             block content
         include ../partials/footer

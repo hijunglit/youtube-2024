@@ -1,9 +1,18 @@
+@import "./reset.scss";
 @import "./variables";
 
 body {
-    background: $red;
+    background: $bg;
     color: $color;
 }
+a {color: $color;}
+/***** Home ******/
+#header ul {
+    display: flex;
+}
+
+
+/***** Video comment ******/
 .video__comment {
     width: 30%;
     display: flex;

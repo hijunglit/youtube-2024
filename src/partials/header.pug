@@ -1,0 +1,22 @@
+header#header
+    nav 
+        ul 
+            li 
+                a(href="/") 
+                    <i class="fab fa-youtube"></i>
+            li 
+                a(href="/search") Search video 
+            if loggedIn
+                li 
+                    a(href="/video/upload") Upload video
+                li 
+                    a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
+                li 
+                    a(href="/user/edit") Edit profile 
+                li 
+                    a(href="/user/logout") Logout 
+            else
+                li 
+                    a(href="/join") Join
+                li 
+                    a(href="/login") Login

@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for youtube-2024 on 2024-02-02T11:40:13+09:00
+# fly.toml app configuration file generated for youtube-2024 on 2024-02-05T23:10:00+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'youtube-2024'
-primary_region = 'hkg'
+primary_region = 'nrt'
 
 [build]
 

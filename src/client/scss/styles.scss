@@ -15,7 +15,7 @@ a {
 #header {
     padding: 12px 0;
 }
-#header > nav {
+#header > .header__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -29,7 +29,17 @@ a {
 #header .page-controller .logo i {
     color: $youtube-red;
 }
-#header .search i {
+#header .search__link {
+    max-width: 250px;
+    width: 100%;
+}
+#header .search__form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    border: 1px solid #817f80;
+    border-radius: 30px;
     padding: 8px 12px;
 }
 #header .user__menu {
@@ -44,6 +54,12 @@ a {
     border-radius: 100%;
     outline: 2px solid red;
 }
+/***** Side bar ******/
+.sidebar .menu > ul {
+    display: flex;
+    flex-direction: column;
+}
+
 /***** Home Video ******/
 .video__grid {
     display: grid;

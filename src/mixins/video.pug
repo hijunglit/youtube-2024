@@ -1,6 +1,6 @@
 mixin videos(video)
     a(href=`/video/${video.id}`) 
-        .thumb__container 
+        div.thumb__container 
             img.thumb__img(src=video.thumbUrl, alt="thumbnail")
         h4.video__title=video.title
         p.video__owner=video.owner.name

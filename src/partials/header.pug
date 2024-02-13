@@ -1,13 +1,14 @@
 header#header
-    nav 
+    nav.header__top
         div.page-controller
             div.menu-bar
                 i(class="fas fa-bars fa-lg")
             div.logo
                 a(href="/") 
                     i(class="fab fa-youtube fa-lg")
-        div.search
-            a(href="/search") Search
+        a.search__link(href="/search")
+            div.search__form
+                p Search
                 i(class="fas fa-search")
         if loggedInUser 
             div.user__menu

@@ -1,22 +1,38 @@
 header#header
     nav 
-        ul 
-            li 
+        div.page-controller
+            div.menu-bar
+                i(class="fas fa-bars fa-lg")
+            div.logo
                 a(href="/") 
-                    <i class="fab fa-youtube"></i>
-            li 
-                a(href="/search") Search video 
-            if loggedIn
-                li 
-                    a(href="/video/upload") Upload video
-                li 
-                    a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
-                li 
-                    a(href="/user/edit") Edit profile 
-                li 
-                    a(href="/user/logout") Logout 
-            else
-                li 
-                    a(href="/join") Join
-                li 
-                    a(href="/login") Login
+                    i(class="fab fa-youtube fa-lg")
+        div.search
+            a(href="/search") Search
+                i(class="fas fa-search")
+        if loggedInUser 
+            div.user__menu
+                if loggedInUser.avatarUrl === ""
+                    span 😀
+                else 
+                    if loggedInUser.avatarUrl
+                        if loggedInUser.avatarUrl.includes("github")
+                            img(src=loggedInUser.avatarUrl, alt="avatar img")
+                        else 
+                            img(src="/" + loggedInUser.avatarUrl , alt="avatar img")
+        else
+            div.login-form 
+                a(href="/login") Login 
+            //- if loggedIn
+            //-     li 
+            //-         a(href="/video/upload") Upload video
+            //-     li 
+            //-         a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
+            //-     li 
+            //-         a(href="/user/edit") Edit profile 
+            //-     li 
+            //-         a(href="/user/logout") Logout 
+            //- else
+            //-     li 
+            //-         a(href="/join") Join
+            //-     li 
+            //-         a(href="/login") Login

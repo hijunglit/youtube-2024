@@ -2,9 +2,9 @@ extends base
 include ../mixins/video
 
 block content
-    ul 
+    ul.video__grid
         each video in videos
-            li 
+            li.video__item 
                 +videos(video)
         else 
             p sorry nothing found.

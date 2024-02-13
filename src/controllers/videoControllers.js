@@ -4,7 +4,10 @@ import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}).sort({ createdAt: "asc" });
+    const videos = await Video.find({})
+      .populate("owner")
+      .sort({ createdAt: "asc" });
+    console.log("videos in home", videos);
     return res.render("home", { pageTitle: "Home", videos });
   } catch {
     return res.render("server-error");

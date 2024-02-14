@@ -4,21 +4,17 @@
 body {
     background: $bg;
     color: $color;
-    padding: 8px 12px;
 }
 a {
     color: $color;
     text-decoration: none;
 }
-
 /***** Header ******/
-#header {
-    padding: 12px 0;
-}
 #header > .header__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 8px 12px;
 }
 #header .page-controller {
     display: flex;
@@ -52,19 +48,18 @@ a {
 }
 #header .login-form {
     border-radius: 100%;
-    outline: 2px solid red;
 }
 /***** Side bar ******/
-.sidebar .menu > ul {
-    display: flex;
-    flex-direction: column;
-}
 
 /***** Home Video ******/
 .video__grid {
     display: grid;
+    width: 100%;
     grid-template-columns: repeat(5, 1fr);
     gap: 15px;
+}
+.video__grid > .video__item .thumb__container {
+    height: 170px;
 }
 .video__grid > .video__item .thumb__img {
     width: 100%; 

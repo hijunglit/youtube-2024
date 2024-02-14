@@ -10,7 +10,7 @@ header#header
             div.search__form
                 p Search
                 i(class="fas fa-search")
-        if loggedInUser 
+        if loggedIn
             div.user__menu
                 if loggedInUser.avatarUrl === ""
                     span 😀

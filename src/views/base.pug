@@ -8,7 +8,9 @@ html(lang="en")
         if messages.error 
             +message("error", messages.error)
         include ../partials/header
-        main
-            block content
+        div.flex-container
+            include ../partials/sidebar
+            main
+                block content
         include ../partials/footer
     block scripts

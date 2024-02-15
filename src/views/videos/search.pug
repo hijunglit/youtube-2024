@@ -6,5 +6,9 @@ block content
         input(type="submit" value="Search now")
     div 
         if videos
-            each video in videos 
-                +videos(video)
+            ul.video__grid
+                each video in videos 
+                    li.video__item 
+                        +videos(video)
+                else 
+                    p sorry nothing found.

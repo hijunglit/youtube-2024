@@ -14,11 +14,15 @@ a {
     display: flex;
 }
 /***** Header ******/
+#header {
+    height: 80px;
+}
 #header > .header__top {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    height: 100%;
+    padding: 0 12px;
 }
 #header .page-controller {
     display: flex;
@@ -54,8 +58,11 @@ a {
     border-radius: 100%;
 }
 /***** Side bar ******/
-.sidebar {
-    height: 100%;
+.sidebar .menu-bar.close {
+    display: none;
+}
+.sidebar .spread-bar.close {
+    display: none;
 }
 .sidebar .menu-links {
     display: flex;

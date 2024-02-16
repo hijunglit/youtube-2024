@@ -21,7 +21,7 @@ header#header
                                 img(src=loggedInUser.avatarUrl, alt="avatar img")
                             else 
                                 img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
-                div(class="user__popup user__popup-container off")
+                div(class="user__popup user__popup-container")
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")
                             div.user__img
@@ -33,27 +33,32 @@ header#header
                                     else 
                                         img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
                             div.user__info
-                                p=loggedInUser.username
-                                p=loggedInUser.email
+                                p(class="info-item user__username")=loggedInUser.username
+                                p(class="info-item user__email")=loggedInUser.email
                     div(class="account-option popup-item")
                         div(class="account-option__wrapper popup-wrapper")
                             div(class="account-info popup-item-list")
-                                a(href="#") 
-                                    span 
-                                        i(class="fab fa-google popup-item-icon")
-                                    span Google 계정
+                                div.popup-item-wrapper
+                                    a(href="#") 
+                                        span 
+                                            i(class="fab fa-google popup-item-icon fa-lg")
+                                        span Google 계정
                             div(class="switch-account popup-item-list")
-                                a(href="#") 
-                                    div.left 
-                                        span
-                                            i(class="fas fa-file-invoice popup-item-icon")
-                                        span 계정 전환
-                                    i(class="fas fa-chevron-right")
+                                div.popup-item-wrapper
+                                    a(href="#") 
+                                        div.left 
+                                            span
+                                                i(class="fas fa-file-invoice popup-item-icon fa-lg")
+                                            span 계정 전환
+                                        i(class="fas fa-chevron-right")
                             div(class="logout popup-item-list")
-                                a(href="/user/logout") 
-                                    span 
-                                        i(class="fas fa-sign-out-alt popup-item-icon")
-                                    span 로그아웃
+                                div.popup-item-wrapper
+                                    a(href="/user/logout") 
+                                        span 
+                                            i(class="fas fa-sign-out-alt popup-item-icon fa-lg")
+                                        span 로그아웃
         else
             div.login-form 
-                a(href="/login") Sign in 
+                a(href="/login")
+                    i(class="far fa-user fa-lg", style="margin-right: 6px;")
+                    span Sign in

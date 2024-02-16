@@ -1,7 +1,7 @@
 header#header
     nav.header__top
         div.page-controller
-            div.menu-bar__icon
+            div(style={cursor:"pointer"}).menu-bar__icon
                 i(class="fas fa-bars fa-lg")
             div.logo
                 a(href="/") 
@@ -12,28 +12,48 @@ header#header
                 i(class="fas fa-search")
         if loggedIn
             div.user__menu
-                if loggedInUser.avatarUrl === ""
-                    span 😀
-                else 
-                    if loggedInUser.avatarUrl
-                        if loggedInUser.avatarUrl.includes("github")
-                            img(src=loggedInUser.avatarUrl, alt="avatar img")
-                        else 
-                            img(src="/" + loggedInUser.avatarUrl , alt="avatar img")
+                div.user__img
+                    if loggedInUser.avatarUrl === ""
+                        span 😀
+                    else 
+                        if loggedInUser.avatarUrl
+                            if loggedInUser.avatarUrl.includes("github")
+                                img(src=loggedInUser.avatarUrl, alt="avatar img")
+                            else 
+                                img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
+                div(class="user__popup user__popup-container off")
+                    div(class="popup__header popup-item") 
+                        div(class="popup__header__wrapper popup-wrapper")
+                            div.user__img
+                                if loggedInUser.avatarUrl === ""
+                                    span 😀
+                                else
+                                    if loggedInUser.avatarUrl.includes("github")
+                                        img(src=loggedInUser.avatarUrl, alt="avatar img")
+                                    else 
+                                        img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
+                            div.user__info
+                                p=loggedInUser.username
+                                p=loggedInUser.email
+                    div(class="account-option popup-item")
+                        div(class="account-option__wrapper popup-wrapper")
+                            div(class="account-info popup-item-list")
+                                a(href="#") 
+                                    span 
+                                        i(class="fab fa-google popup-item-icon")
+                                    span Google 계정
+                            div(class="switch-account popup-item-list")
+                                a(href="#") 
+                                    div.left 
+                                        span
+                                            i(class="fas fa-file-invoice popup-item-icon")
+                                        span 계정 전환
+                                    i(class="fas fa-chevron-right")
+                            div(class="logout popup-item-list")
+                                a(href="/user/logout") 
+                                    span 
+                                        i(class="fas fa-sign-out-alt popup-item-icon")
+                                    span 로그아웃
         else
             div.login-form 
                 a(href="/login") Sign in 
-            //- if loggedIn
-            //-     li 
-            //-         a(href="/video/upload") Upload video
-            //-     li 
-            //-         a(href="/user/" + loggedInUser._id) #{loggedInUser.name}의 Profile
-            //-     li 
-            //-         a(href="/user/edit") Edit profile 
-            //-     li 
-            //-         a(href="/user/logout") Logout 
-            //- else
-            //-     li 
-            //-         a(href="/join") Join
-            //-     li 
-            //-         a(href="/login") Login

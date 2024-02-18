@@ -101,8 +101,9 @@ a {
     border: 1px solid $border;
     padding: 10px 12px;
 }
-#header .login-form > a {
-    color: #5d8eb8;
+#header > .header__top .login-form > i,
+#header > .header__top .login-form span {
+    color: #f2f2f2;
 }
 
 /***** Side bar ******/
@@ -168,6 +169,20 @@ a {
     height: 100%;
     object-fit: cover;
     border-radius: 6px;
+}
+
+/***** Login ******/
+.login__login-form-wrapper {
+    width: 36%; height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 auto;
+}
+.login__login-form {
+    width: 100%; height: 40%;
+    border: 1px solid $border;
+    border-radius: 20px;
 }
 
 /***** Video comment ******/

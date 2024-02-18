@@ -1,15 +1,37 @@
-extends ../base
-block content 
+extends ../base-no-header
+block content
     if errorMessage 
         span=errorMessage
-    form(method="POST")
-        input(type="text" name="username" placeholder="username" required)
-        input(type="password" name="password" placeholder="password" required)
-        input(type="submit" value="Login")
-        br
-        a(href="user/github/start") Continue with github &rarr;
-        hr
-        div 
-            span Don't have an account?
-            a(href="/join") Create one now &rarr;  
-            
+    div.login__login-form-wrapper 
+        div.login__login-form 
+            div.login-header
+                i(class="fas fa-google")    
+                h3 로그인
+                p YouTube로 이동
+            div.login-form
+                form(method="POST")
+                    input(type="text" name="username" placeholder="username" required)
+                    input(type="password" name="password" placeholder="password" required)
+                    input(type="submit" value="Login")
+                    br
+                    a(href="user/github/start") Continue with github &rarr;
+                    hr
+                    div 
+                        span Don't have an account?
+                        a(href="/join") Create one now &rarr;  
+
+
+//- extends ../base
+//- block content 
+//-     if errorMessage 
+//-         span=errorMessage
+//-     form(method="POST")
+//-         input(type="text" name="username" placeholder="username" required)
+//-         input(type="password" name="password" placeholder="password" required)
+//-         input(type="submit" value="Login")
+//-         br
+//-         a(href="user/github/start") Continue with github &rarr;
+//-         hr
+//-         div 
+//-             span Don't have an account?
+//-             a(href="/join") Create one now &rarr;  

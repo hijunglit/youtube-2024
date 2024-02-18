@@ -21,7 +21,7 @@ header#header
                                 img(src=loggedInUser.avatarUrl, alt="avatar img")
                             else 
                                 img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
-                div(class="user__popup user__popup-container")
+                div(class="user__popup user__popup-container off")
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")
                             div.user__img
@@ -58,7 +58,7 @@ header#header
                                             i(class="fas fa-sign-out-alt popup-item-icon fa-lg")
                                         span 로그아웃
         else
-            div.login-form 
-                a(href="/login")
+            a(href="/login")
+                div.login-form 
                     i(class="far fa-user fa-lg", style="margin-right: 6px;")
                     span Sign in

@@ -15,4 +15,6 @@ function handleUserPopup() {
   userPopup.classList.toggle("off");
 }
 menuIcon.addEventListener("click", handleSideMenu);
-userMenuIcon.addEventListener("click", handleUserPopup);
+if (userMenuIcon) {
+  userMenuIcon.addEventListener("click", handleUserPopup);
+}

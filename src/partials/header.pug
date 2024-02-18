@@ -30,10 +30,10 @@ header#header
                                 else
                                     if loggedInUser.avatarUrl
                                         if loggedInUser.avatarUrl.includes("github")
-                                            a(href="user/edit") 
+                                            a(href="/user/edit") 
                                                 img(src=loggedInUser.avatarUrl, alt="avatar img")
                                         else 
-                                            a(href="user/edit") 
+                                            a(href="/user/edit") 
                                                 img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
                             div.user__info
                                 p(class="info-item user__username")=loggedInUser.username

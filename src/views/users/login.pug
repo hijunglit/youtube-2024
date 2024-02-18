@@ -10,12 +10,14 @@ block content
                 p YouTube로 이동
             div.login-form
                 form(method="POST")
-                    input(type="text" name="username" placeholder="username" required)
-                    input(type="password" name="password" placeholder="password" required)
-                    input(type="submit" value="Login")
-                    br
-                    a(href="user/github/start") Continue with github &rarr;
-                    hr
+                    input(class="login-info" type="text" name="username" placeholder="username" required)
+                    input(class="login-info" type="password" name="password" placeholder="password" required)
+                    input(class="login-submit" type="submit" value="Login")
+                div.login__addition-option
+                    a(href="user/github/start")
+                        i(class="fab fa-github" style="padding-right: 6px") 
+                        span Continue with github &rarr;
+                    hr(style="width: 100%")
                     div 
                         span Don't have an account?
                         a(href="/join") Create one now &rarr;  

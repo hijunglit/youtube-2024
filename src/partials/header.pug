@@ -13,7 +13,7 @@ header#header
         if loggedIn
             div.user__menu
                 div.user__img
-                    if loggedInUser.avatarUrl === ""
+                    if !loggedInUser.avatarUrl
                         span 😀
                     else 
                         if loggedInUser.avatarUrl
@@ -25,13 +25,16 @@ header#header
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")
                             div.user__img
-                                if loggedInUser.avatarUrl === ""
+                                if !loggedInUser.avatarUrl
                                     span 😀
                                 else
-                                    if loggedInUser.avatarUrl.includes("github")
-                                        img(src=loggedInUser.avatarUrl, alt="avatar img")
-                                    else 
-                                        img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
+                                    if loggedInUser.avatarUrl
+                                        if loggedInUser.avatarUrl.includes("github")
+                                            a(href="user/edit") 
+                                                img(src=loggedInUser.avatarUrl, alt="avatar img")
+                                        else 
+                                            a(href="user/edit") 
+                                                img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
                             div.user__info
                                 p(class="info-item user__username")=loggedInUser.username
                                 p(class="info-item user__email")=loggedInUser.email

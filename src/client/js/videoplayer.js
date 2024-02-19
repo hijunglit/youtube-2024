@@ -20,7 +20,9 @@ const handlePlayClick = () => {
   } else {
     media.pause();
   }
-  playBtn.innerText = media.paused ? "Play" : "Pause";
+  playBtn.innerHTML = media.paused
+    ? `<i class="fas fa-play">`
+    : `<i class="fas fa-pause">`;
 };
 
 const handleMuteClick = () => {
@@ -29,16 +31,23 @@ const handleMuteClick = () => {
   } else {
     media.muted = true;
   }
-  muteBtn.innerText = media.muted ? "Unmute" : "Mute";
+  muteBtn.innerHTML = media.muted
+    ? `<i class="fas fa-volume-mute fa-lg">`
+    : `<i class="fas fa-volume-off fa-lg">`;
 };
 
 const handleVolumeChange = (event) => {
   const {
     target: { value },
   } = event;
+  console.log(value);
+  if (value === 0) {
+    console.log("value is zero!");
+    muteBtn.innerHTML = `<i class="fas fa-volume-mute fa-lg">`;
+  }
   if (media.muted) {
     media.muted = false;
-    muteBtn.innerText = "Mute";
+    muteBtn.innerHTML = `<i class="fas fa-volume-off fa-lg">`;
   }
   volumeValue = value;
   media.volume = value;
@@ -75,10 +84,10 @@ const handleFullscreen = () => {
   const fullScreen = document.fullscreenElement;
   if (fullScreen) {
     document.exitFullscreen();
-    fullScreenBtn.innerText = "Enter Full Screen";
+    fullScreenBtn.innerHTML = `<i class="fas fa-expand">`;
   } else {
     videoContainer.requestFullscreen();
-    fullScreenBtn.innerText = "Exit Full Screen";
+    fullScreenBtn.innerHTML = `<i class="fas fa-compress">`;
   }
 };
 

@@ -70,7 +70,9 @@ main {
     outline: 2px solid red;
 }
 #header .user__menu img {
-    width: 100%; height: 100%;
+    width: 100%; 
+    height: 100%;
+    object-fit: cover;
 }
 .user__menu .user__popup {
     position: absolute;
@@ -118,6 +120,9 @@ main {
 }
 
 /***** Side bar ******/
+.sidebar .menu-bar {
+    width: 90px;
+}
 .sidebar .menu-bar.close {
     display: none;
 }
@@ -410,6 +415,86 @@ main {
     margin: 4px 0;
     border-radius: $form-radius;
     border: none;
+}
+/***** Watch video ******/
+#videoPlayer {
+    position: relative;
+}
+#videoControls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+#videoControls .videoControls__wrapper {
+    padding: 0 12px 12px;
+}
+#videoControls .videoControls__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#videoControls .videoControls__bottom button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: $color;
+    padding-top: 8px;
+}
+#videoControls .videoControls__bottom > .controlContainer {
+    display: flex;
+    align-items: center;
+}
+#videoContainer {
+    margin-right: 12px;
+}
+#watchPageContainer {
+    display: flex;
+}
+#videoInfo {
+    margin: 12px 0 24px;
+}
+#videoInfo > .watch__title {
+    font-size: 1.25em;
+    font-weight: 700;
+}
+#videoInfo .watch__owner-info {
+    display: flex;
+    align-items: center;
+    margin: 24px 0;
+}
+#videoInfo .watch__owner-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+    overflow: hidden;
+    margin-right: 10px;
+}
+#videoInfo .watch__owner-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#videoInfo .watch__detail {
+    background: $sub-color;
+    padding: 12px;
+}
+#videoInfo .watch__detail .watch__detail-wrapper {
+    margin: 6px;
+}
+.recommentVideo__item:not(:last-child) {
+    padding-bottom: 8px;
+}
+.recommentVideo__item > a {
+    display: flex;
+}
+.recommentVideo__item .thumb__container {
+    width: 168px;
+    margin-right: 6px;
+}
+.recommentVideo__item .thumb__container > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 /***** Video comment ******/
 .video__comment {

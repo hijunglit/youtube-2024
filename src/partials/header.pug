@@ -13,14 +13,10 @@ header#header
         if loggedIn
             div.user__menu
                 div.user__img
-                    if !loggedInUser.avatarUrl
+                    if loggedInUser.avatarUrl
+                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar" width="100" height="100" class="user__change-avatar" )
+                    else
                         span 😀
-                    else 
-                        if loggedInUser.avatarUrl
-                            if loggedInUser.avatarUrl.includes("github")
-                                img(src=loggedInUser.avatarUrl, alt="avatar img")
-                            else 
-                                img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
                 div(class="user__popup user__popup-container off")
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")

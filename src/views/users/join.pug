@@ -2,15 +2,15 @@ extends ../base
 block content 
     if errorMessage 
         span=errorMessage 
-    form(method="POST")
-        input(type="text" name="name" placeholder="name" required)
-        input(type="email" name="email" placeholder="email" required)
-        input(type="text" name="username" placeholder="username" required)
-        input(type="password" name="password" placeholder="password" required)
-        input(type="password" name="password2" placeholder="confirm password" required)
-        input(type="text" name="location" placeholder="location")
-        input(type="submit" value="Join") 
-        hr
+    form(method="POST" class="user__join-form")
+        input(class="join-info" type="text" name="name" placeholder="name" required)
+        input(class="join-info" type="email" name="email" placeholder="email" required)
+        input(class="join-info" type="text" name="username" placeholder="username" required)
+        input(class="join-info" type="password" name="password" placeholder="password" required)
+        input(class="join-info" type="password" name="password2" placeholder="confirm password" required)
+        input(class="join-info" type="text" name="location" placeholder="location")
+        input(class="join-submit" type="submit" value="Join") 
+        hr(style="width:100%")
         div 
             span already have an account?
             a(href="/login") Log in now 

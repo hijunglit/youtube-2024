@@ -9,13 +9,13 @@ export const postJoin = async (req, res) => {
   const pageTitle = "Join";
   const exists = await User.exists({ $or: [{ email }, { username }] });
   if (exists) {
-    return res.status(400).render("join", {
+    return res.status(400).render("users/join", {
       pageTitle,
       errorMessage: "email/username is already taken",
     });
   }
   if (password !== password2) {
-    return res.status(400).render("join", {
+    return res.status(400).render("users/join", {
       pageTitle,
       errorMessage: "password comfirm does not match",
     });
@@ -30,7 +30,7 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect("/login");
   } catch (error) {
-    return res.status(400).render("join", {
+    return res.status(400).render("users/join", {
       pageTitle: "Upload Video",
       errorMessage: error._message,
     });

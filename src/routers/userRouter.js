@@ -9,19 +9,20 @@ import {
   getChangePassword,
   postChangePassword,
 } from "../controllers/userControllers";
-import { 
-  protectorMiddleware, 
-  publicOnlyMiddleware, 
+import {
+  protectorMiddleware,
+  publicOnlyMiddleware,
   uploadAvatar,
 } from "../middleware";
 
 const userRouter = express.Router();
 
 userRouter.get("/logout", protectorMiddleware, logout);
-userRouter.route("/edit")
+userRouter
+  .route("/edit")
   .all(protectorMiddleware)
   .get(getEdit)
-  .post(uploadAvatar.single('avatar'), postEdit);
+  .post(uploadAvatar.single("avatar"), postEdit);
 userRouter
   .route("/change-password")
   .all(protectorMiddleware)

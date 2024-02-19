@@ -2,16 +2,22 @@ extends ../base
 block content 
     if errorMessage 
         span=errorMessage
-    img(src= loggedInUser ? (isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl) : null alt="avatar" width="100" height="100")
-    form(method="POST" enctype="multipart/form-data")
-        label(for="avatar") Choose a avatar image
-        input(type="file" name="avatar" id="avatar" accept="image/*")
-        input(placeholder="Name" type="text" name="name" value=loggedInUser.name required)
-        input(placeHolder="Email" type="email" name="email" value=loggedInUser.email required)
-        input(placeHolder="Username" type="text" name="username" value=loggedInUser.username required)
-        input(placeHolder="Location" type="text" name="location" value=loggedInUser.location required)
-        input(type="submit" value="Update Profile")
+    div.user__edit-profile-form 
+        if loggedInUser.avatarUrl
+            img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar" width="100" height="100" class="user__change-avatar" )
+        else
+            span 😀
+        form(method="POST" enctype="multipart/form-data" class="user__edit-form")
+            label(for="avatar") Choose a avatar image
+            input(class="edit-info" type="file" name="avatar" id="avatar" accept="image/*")
+            input(class="edit-info" placeholder="Name" type="text" name="name" value=loggedInUser.name required)
+            input(class="edit-info" placeHolder="Email" type="email" name="email" value=loggedInUser.email required)
+            input(class="edit-info" placeHolder="Username" type="text" name="username" value=loggedInUser.username required)
+            input(class="edit-info" placeHolder="Location" type="text" name="location" value=loggedInUser.location required)
+            input(class="edit-submit" type="submit" value="Update Profile")
         
         if !loggedInUser.socialOnly 
             hr
             a(href="change-password") Change password &rarr;
+block scripts
+    script(src="/static/js/main.js") 

@@ -9,6 +9,9 @@ a {
     color: $color;
     text-decoration: none;
 }
+main {
+    width: 100%;
+}
 /***** Layout Section ******/
 .flex-container {
     display: flex;
@@ -201,15 +204,15 @@ a {
 }
 .login__login-form .login-form .login-info {
     background: $sub-color;
-    border-radius: 4px;
+    border-radius: $form-radius;
     border: none;
-    padding: 16px 12px;
+    padding: $form-padding;
     margin: 10px 0;
 }
 .login__login-form .login-form .login-submit {
     background: $color;
-    color: $youtube-red;
-    border-radius: 3px;
+    color: $bg;
+    border-radius: $form-radius;
     border: none;
     padding: 12px 12px;
     font-size: 1.25em;
@@ -231,6 +234,37 @@ a {
 }
 .user-videos {
     padding-top: 20px;
+}
+/***** Edit profile ******/
+.user__edit-profile-form  {
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px 0;
+}
+.user__change-avatar {
+    overflow: hidden;
+    border-radius: 50%;
+}
+.user__edit-form {
+    display: flex;
+    flex-direction: column;
+}
+.user__edit-form .edit-info {
+    padding: $form-padding;
+    margin: 4px 0;
+    background: $sub-color;
+    color: $color;
+    border-radius: $form-radius;
+    border: none;
+}
+.user__edit-form .edit-submit {
+    cursor: pointer;
+    background: $color;
+    color: $bg;
+    padding: $form-padding;
+    margin: 4px 0;
+    border-radius: $form-radius;
+    border: none;
 }
 /***** Video comment ******/
 .video__comment {

@@ -10,47 +10,50 @@ nav.sidebar
                     a(href="#")
                         i(class="fas fa-bolt fa-lg")
                         p(class="text nav-text") Shorts 
-                li.nav-link 
-                    a(href="#")
-                        i(class="fas fa-boxes fa-lg")
-                        p(class="text nav-text") 구독 
-                li.nav-link 
-                    a(href="#")
-                        i(class="fas fa-play fa-lg")
-                        p(class="text nav-text") 나
+                if loggedIn
+                    li.nav-link 
+                        a(href="#")
+                            i(class="fas fa-boxes fa-lg")
+                            p(class="text nav-text") 구독 
+                    li.nav-link 
+                        a(href="/user/" + loggedInUser._id)
+                            i(class="fas fa-play fa-lg")
+                            p(class="text nav-text") 나
     div.spread-bar
         div.spread-menu
             ul.spread-menu-links
                 li.spread-menu-link
                     a(href="/")
                         i(class="fas fa-home fa-lg")
-                        p(class="text nav-text") 홈   
+                        p(class="text nav-text") 홈 
+                if loggedIn  
+                    li.spread-menu-link
+                        a(href="#")
+                            i(class="fas fa-boxes fa-lg")
+                            p(class="text nav-text") 구독 
                 li.spread-menu-link
                     a(href="#")
                         i(class="fas fa-bolt fa-lg")
                         p(class="text nav-text") Shorts  
-                li.spread-menu-link
-                    a(href="#")
-                        i(class="fas fa-boxes fa-lg")
-                        p(class="text nav-text") 구독 
-            ul(class="my-history spread-menu-links")
-                li.spread-menu-link
-                    a(href="#")
-                        p 나 
-                        span 
-                            i(class="fas fa-chevron-right")
-                li.spread-menu-link
-                    a(href="#")
-                        i(class="fas fa-history")
-                        p(class="text nav-text") 시청 기록
-                li.spread-menu-link
-                    a(href="#")
-                        i(class="fas fa-clock")
-                        p(class="text nav-text") 나중에 볼 동영상
-                li.spread-menu-link
-                    a(href="#")
-                        i(class="fas fa-thumbs-up")
-                        p(class="text nav-text") 좋아요 표시한 동영상
+            if loggedIn
+                ul(class="my-history spread-menu-links")
+                    li.spread-menu-link
+                        a(href="/user/" + loggedInUser._id)
+                            p 나 
+                            span 
+                                i(class="fas fa-chevron-right")
+                    li.spread-menu-link
+                        a(href="#")
+                            i(class="fas fa-history")
+                            p(class="text nav-text") 시청 기록
+                    li.spread-menu-link
+                        a(href="#")
+                            i(class="fas fa-clock")
+                            p(class="text nav-text") 나중에 볼 동영상
+                    li.spread-menu-link
+                        a(href="#")
+                            i(class="fas fa-thumbs-up")
+                            p(class="text nav-text") 좋아요 표시한 동영상
                 
 
 

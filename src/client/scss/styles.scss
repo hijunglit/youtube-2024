@@ -316,6 +316,61 @@ main {
     border-radius: $form-radius;
     border: none;
 }
+/***** Edit video ******/
+.edit__video-title {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2em;
+    font-weight: 700;
+}
+.video__edit-form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+}
+.video__edit-form .edit-info {
+    padding: $form-padding;
+    margin: 4px 0;
+    background: $sub-color;
+    color: $color;
+    border-radius: $form-radius;
+    border: none;
+}
+.video__edit-form .edit-submit {
+    cursor: pointer;
+    background: $color;
+    color: $bg;
+    padding: $form-padding;
+    margin: 4px 0;
+    border-radius: $form-radius;
+    border: none;
+}
+/***** Search video ******/
+.video__search-form {
+    width: 500px;
+    margin: 0 auto;
+    padding: 50px 0;
+    display: flex;
+}
+.video__search-form > .search-keyword {
+    padding: $form-padding;
+    margin: 4px 0;
+    background: $sub-color;
+    color: $color;
+    border-radius: $form-radius;
+    border: none;
+}
+.video__search-form .search-submit {
+    cursor: pointer;
+    background: $color;
+    color: $bg;
+    padding: $form-padding;
+    margin: 4px 0;
+    border-radius: $form-radius;
+    border: none;
+}
 /***** Video comment ******/
 .video__comment {
     width: 30%;

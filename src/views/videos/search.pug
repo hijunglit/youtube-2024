@@ -1,9 +1,9 @@
 extends ../base
 include ../../mixins/video
 block content 
-    form(method="GET")
-        input(type="text" placeholder=" Search by title" name="keyword")
-        input(type="submit" value="Search now")
+    form(method="GET" class="video__search-form")
+        input(class="search-keyword" type="text" placeholder=" Search by title" name="keyword")
+        input(class="search-submit" type="submit" value="Search now")
     div 
         if videos
             ul.video__grid

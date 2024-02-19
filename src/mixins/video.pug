@@ -1,7 +1,7 @@
 mixin videos(video)
     a(href=`/video/${video.id}`) 
         div.thumb__container 
-            img.thumb__img(src=video.thumbUrl, alt="thumbnail")
+            img.thumb__img(src="/" + video.thumbUrl, alt="thumbnail")
         h4.video__title=video.title
         p.video__owner=video.owner.name
         p.video__views 조회수 #{video.meta.views} 회

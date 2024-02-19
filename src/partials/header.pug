@@ -26,14 +26,15 @@ header#header
                         div(class="popup__header__wrapper popup-wrapper")
                             div.user__img
                                 if !loggedInUser.avatarUrl
-                                    span 😀
+                                    a(href="/user/edit") 
+                                        span 😀
                                 else
                                     if loggedInUser.avatarUrl
                                         if loggedInUser.avatarUrl.includes("github")
-                                            a(href="/user/edit") 
+                                            a(href="/user/" + loggedInUser._id) 
                                                 img(src=loggedInUser.avatarUrl, alt="avatar img")
                                         else 
-                                            a(href="/user/edit") 
+                                            a(href="/user/" + loggedInUser._id) 
                                                 img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
                             div.user__info
                                 p(class="info-item user__username")=loggedInUser.username

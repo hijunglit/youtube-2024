@@ -59,6 +59,13 @@ a {
     margin-right: 10px;
     text-align: center;
 }
+#header .user__menu .user__img > a {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    outline: 2px solid red;
+}
 #header .user__menu img {
     width: 100%; height: 100%;
 }
@@ -209,6 +216,21 @@ a {
 }
 .login__addition-option {
     margin-top: 12px;
+}
+/***** User profile ******/
+.user__avatar {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+.user__avatar > img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.user-videos {
+    padding-top: 20px;
 }
 /***** Video comment ******/
 .video__comment {

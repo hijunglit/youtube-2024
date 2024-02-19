@@ -1,8 +1,23 @@
 extends ../base
 include ../../mixins/video
 block content 
-    each video in user.videos
-        +videos(video)
-
+    div.user__avatar
+        if !loggedInUser.avatarUrl
+            span 😀
+        else 
+            if loggedInUser.avatarUrl 
+                if loggedInUser.avatarUrl.includes("github")
+                    img(src=loggedInUser.avatarUrl, alt="avatar url")
+                else 
+                    img(src="/" + loggedInUser.avatarUrl, alt="avatar url")
+    if user.videos.length > 0
+        ul.video__grid.user-videos
+            each video in user.videos
+                li.video__item
+                    +videos(video)
+    else if user.videos.length === 0
+        p Video not found.
+block scripts
+    script(src="/static/js/main.js") 
 
     

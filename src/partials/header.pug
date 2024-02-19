@@ -14,24 +14,18 @@ header#header
             div.user__menu
                 div.user__img
                     if loggedInUser.avatarUrl
-                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar" width="100" height="100" class="user__change-avatar" )
+                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar")
                     else
                         span 😀
                 div(class="user__popup user__popup-container off")
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")
                             div.user__img
-                                if !loggedInUser.avatarUrl
-                                    a(href="/user/edit") 
-                                        span 😀
-                                else
-                                    if loggedInUser.avatarUrl
-                                        if loggedInUser.avatarUrl.includes("github")
-                                            a(href="/user/" + loggedInUser._id) 
-                                                img(src=loggedInUser.avatarUrl, alt="avatar img")
-                                        else 
-                                            a(href="/user/" + loggedInUser._id) 
-                                                img(src="/" + loggedInUser.avatarUrl, alt="avatar img")
+                                if loggedInUser.avatarUrl 
+                                    a(href="/user/" + loggedInUser._id) 
+                                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar")
+                                else 
+                                    span 😀
                             div.user__info
                                 p(class="info-item user__username")=loggedInUser.username
                                 p(class="info-item user__email")=loggedInUser.email

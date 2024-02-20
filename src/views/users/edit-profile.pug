@@ -4,7 +4,11 @@ block content
         span=errorMessage
     div.user__edit-profile-form 
         if loggedInUser.avatarUrl
-            img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar" width="100" height="100" class="user__change-avatar" )
+            img(class="user__change-avatar" src= isFly ? loggedInUser.avatarUrl 
+            : (loggedInUser.avatarUrl.includes("github") 
+            ? loggedInUser.avatarUrl 
+            : "/" + loggedInUser.avatarUrl) 
+            alt="avatar" width="100" height="100")
         else
             span 😀
         form(method="POST" enctype="multipart/form-data" class="user__edit-form")

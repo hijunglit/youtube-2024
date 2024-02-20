@@ -356,7 +356,7 @@ main {
 .video__search-form {
     width: 500px;
     margin: 0 auto;
-    padding: 50px 0;
+    padding: 0 0 50px;
     display: flex;
 }
 .video__search-form > .search-keyword {
@@ -477,9 +477,16 @@ main {
 #videoInfo .watch__detail {
     background: $sub-color;
     padding: 12px;
+    border-radius: 10px;
 }
 #videoInfo .watch__detail .watch__detail-wrapper {
     margin: 6px;
+}
+#videoInfo .watch__detail .watch__detail-wrapper .hashtags {
+    color: $linkColor;
+}
+.ownerAccessOnly {
+    padding: 12px 0;
 }
 .recommentVideo__item:not(:last-child) {
     padding-bottom: 8px;
@@ -505,4 +512,9 @@ main {
 .video__comment span:nth-child(3) {
     cursor: pointer;
 }
+
 /***** Footer ******/
+#footer{
+    text-align: center;
+    padding: 2em 0;
+}

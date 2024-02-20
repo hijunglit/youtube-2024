@@ -14,7 +14,11 @@ header#header
             div.user__menu
                 div.user__img
                     if loggedInUser.avatarUrl
-                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar")
+                        img(src= isFly ? loggedInUser.avatarUrl 
+                        : (loggedInUser.avatarUrl.includes("github") 
+                        ? loggedInUser.avatarUrl 
+                        : "/" + loggedInUser.avatarUrl) 
+                        alt="avatar")
                     else
                         span 😀
                 div(class="user__popup user__popup-container off")
@@ -23,7 +27,11 @@ header#header
                             div.user__img
                                 if loggedInUser.avatarUrl 
                                     a(href="/user/" + loggedInUser._id) 
-                                        img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar")
+                                        img(src= isFly ? loggedInUser.avatarUrl 
+                                        : (loggedInUser.avatarUrl.includes("github") 
+                                        ? loggedInUser.avatarUrl 
+                                        : "/" + loggedInUser.avatarUrl) 
+                                        alt="avatar")
                                 else 
                                     span 😀
                             div.user__info

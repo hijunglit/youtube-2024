@@ -29,7 +29,11 @@ block content
                 div.watch__owner-info
                     div.watch__owner-img
                         a(href= "/user/" + video.owner._id) 
-                            img(src= isFly ? video.owner.avatarUrl : "/" + video.owner.avatarUrl, alt="owner avatar")
+                            img(src= isFly ? loggedInUser.avatarUrl 
+                            : (loggedInUser.avatarUrl.includes("github") 
+                            ? loggedInUser.avatarUrl 
+                            : "/" + loggedInUser.avatarUrl) 
+                            alt="avatar")
                     a(href= "/user/" + video.owner._id)
                         p=video.owner.username  
                 div.watch__detail
@@ -37,10 +41,12 @@ block content
                         span.watch__views 조회수 #{video.meta.views}회 
                         span.watch__createdAt=video.createdAt 
                         p=video.description
-                        span.watch__hashtags=video.hashtags  
+                        div.hashtags
+                            each hashtag in video.hashtags
+                                span.hashtag=hashtag  
+                            //- span.watch__hashtags=video.hashtags  
                 div.ownerAccessOnly
                     if String(video.owner._id) == String(loggedInUser._id)
-                        br
                         a(href=video.id + "/edit") edit video &rarr;
                         br
                         a(href=video.id + "/delete") delete video &rarr;

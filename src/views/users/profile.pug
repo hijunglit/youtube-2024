@@ -3,7 +3,11 @@ include ../../mixins/video
 block content 
     div.user__avatar
         if loggedInUser.avatarUrl 
-            img(src= isFly ? loggedInUser.avatarUrl : "/" + loggedInUser.avatarUrl alt="avatar")
+            img(src= isFly ? loggedInUser.avatarUrl 
+            : (loggedInUser.avatarUrl.includes("github") 
+            ? loggedInUser.avatarUrl 
+            : "/" + loggedInUser.avatarUrl) 
+            alt="avatar")
         else 
             span 😀
     if user.videos.length > 0

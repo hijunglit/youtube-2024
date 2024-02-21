@@ -507,7 +507,8 @@ main {
 .video__comment {
     width: 30%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding-bottom: 10px;
 }
 .video__comment span:nth-child(3) {
     cursor: pointer;
@@ -520,11 +521,29 @@ main {
     height: 40px;
     border-radius: 100px;
     overflow: hidden;
+    margin-right: 10px;
 }
 #commentSection .commentSection__user-image > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+#commentSection .video__add_comments form > textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $color;
+    margin-bottom: 10px;
+    color: $color;
+}
+#commentSection .video__add_comments form button {
+    background: $linkColor;
+    border-radius: 18px;
+    padding: 10px;
+    border: none;
+}
+.video__comment-button {
+    display: flex;
+    justify-content: space-between;
 }
 /***** Footer ******/
 #footer{

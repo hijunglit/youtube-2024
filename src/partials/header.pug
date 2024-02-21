@@ -20,7 +20,7 @@ header#header
                         : "/" + loggedInUser.avatarUrl) 
                         alt="avatar")
                     else
-                        span 😀
+                        img(src="/image/anonymous-avatar.jpg", alt="avatar img")
                 div(class="user__popup user__popup-container off")
                     div(class="popup__header popup-item") 
                         div(class="popup__header__wrapper popup-wrapper")
@@ -33,7 +33,8 @@ header#header
                                         : "/" + loggedInUser.avatarUrl) 
                                         alt="avatar")
                                 else 
-                                    span 😀
+                                    a(href="/user/" + loggedInUser._id)
+                                        img(src="/image/anonymous-avatar.jpg", alt="avatar img")
                             div.user__info
                                 p(class="info-item user__username")=loggedInUser.username
                                 p(class="info-item user__email")=loggedInUser.email

@@ -9,7 +9,7 @@ block content
             : "/" + loggedInUser.avatarUrl) 
             alt="avatar")
         else 
-            span 😀
+            img(src="/image/anonymous-avatar.jpg", alt="avatar img")
     if user.videos.length > 0
         ul.video__grid.user-videos
             each video in user.videos

@@ -29,10 +29,10 @@ block content
                 div.watch__owner-info
                     div.watch__owner-img
                         a(href= "/user/" + video.owner._id) 
-                            img(src= isFly ? loggedInUser.avatarUrl 
-                            : (loggedInUser.avatarUrl.includes("github") 
-                            ? loggedInUser.avatarUrl 
-                            : "/" + loggedInUser.avatarUrl) 
+                            img(src= isFly ? video.owner.avatarUrl 
+                            : (video.owner.avatarUrl.includes("github") 
+                            ? video.owner.avatarUrl 
+                            : "/" + video.owner.avatarUrl) 
                             alt="avatar")
                     a(href= "/user/" + video.owner._id)
                         p=video.owner.username  
@@ -52,7 +52,16 @@ block content
                         a(href=video.id + "/delete") delete video &rarr;
             div#commentSection
                 if loggedIn
-                    .video__add_comments 
+                    div.video__add_comments 
+                        div.commentSection__user-image 
+                            if loggedInUser.avatarUrl
+                                img(src= isFly ? loggedInUser.avatarUrl 
+                                : (loggedInUser.avatarUrl.includes("github") 
+                                ? loggedInUser.avatarUrl 
+                                : "/" + loggedInUser.avatarUrl) 
+                                alt="avatar")
+                            else
+                                img(src="/image/anonymous-avatar.jpg", alt="avatar img")
                         form.video__comment-form#commentForm
                             textarea(cols="30", rows="10" placeholder="Write a comment...")
                             button(type="submit") Add comment    
